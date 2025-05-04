@@ -1,0 +1,609 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <link href="https://unpkg.com/vuetify@1.0.17/dist/vuetify.min.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="<%= globals.LOGO %>">
+
+    <title>
+        <%= globals.app_name %> API
+    </title>
+    <style type="text/css">
+        .medium-text {
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <BR>
+    <BR>
+
+    <div id="main" style="margin:0px auto; text-align:center; position:sticky;">
+        <center>
+            <table border="0" cellpadding="10" cellspacing="10" width="70%"
+                style="background-color: #2c7399;color: #fff;font-weight: bold;">
+                <tr>
+                    <td><b>Server URL :-</b></td>
+                    <td>
+                        <%= globals.app_url %>
+                    </td>
+                    <td>Header Parameters :</td>
+                    <td><b>api_key,<br>authorization,<br>accept_language
+                            (en,es,fr)</br>Content-Type</b><br><b>is_production (true /false) </b></td>
+                    <!-- <td><br>accept_language: en -> English<br></td> -->
+                </tr>
+                <tr>
+                    <!-- <td colspan="4" align="center"><b>If Device Token not get pass 0 only</b></td> -->
+                    <td colspan="4" align="center"><b>In authorization pass access_token</b></td>
+                </tr>
+            </table>
+        </center>
+
+        <br>
+        <br>
+    </div>
+    <div id="app">
+        <v-app id="inspire">
+
+            <v-layout justify column>
+                <v-flex style="margin:0px auto; padding:0px; text-align:center;" center right sm2 xs2 md2 lg2 xl2>
+                    <!-- <img src='<%= globals.base_url_without_api+ globals.logo %>' width="250px" height="250px" style="border:1px solid black"> -->
+                    <br>
+                    <strong style="font-size:24px;">
+                        <%= globals.app_name %> API LIST
+                    </strong>
+                    <br>
+                    <br>
+                </v-flex>
+                <v-flex style="margin:0px auto; padding:0px;" center right sm2 xs2 md2 lg2 xl2>
+
+                    <div id="main" style="margin:0px auto; position:sticky;">
+                        <table border="0" cellpadding="10" cellspacing="10" width="140%"
+                            style="background-color: rgb(71, 131, 100);color: #fff;font-weight: bold;">
+                            <tr>
+                                <td><b>Server URL :</b></td>
+                                <td>
+                                    <%= globals.app_url %>v1/
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Header Parameters :</b></td>
+                                <td>api_key,authorization,accept_language</td>
+                            </tr>
+                            <tr>
+                                <td><b>api_key :</b></td>
+                                <td><b>
+                                        <%= globals.api_key %>
+                                    </b></td>
+                            </tr>
+                            <tr>
+                                <td><b>api_key(encrypted) :-</b></td>
+                                <td><b>3oG7UFh0dYwtiDGb/McDWA==</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>KEY :</b></td>
+                                <td><b>xza548sa3vcr641b5ng5nhy9mlo64r6k</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>IV :</b></td>
+                                <td><b>
+                                        <%= globals.encryptionIV %>
+                                    </b></td>
+                            </tr>
+                            <!-- <tr>
+                                <td colspan="2" align="center"><img src='<%= globals.base_url_without_api+ globals.arrow_image %>' width="40px"> &nbsp;&nbsp;
+                                    <b>If Device Token not get pass 0 only</b></td>
+                            </tr> -->
+                        </table>
+                        <br>
+                        <br>
+                    </div>
+                </v-flex>
+                <v-flex style="margin:0px auto;" center right sm2 xs2 md2 lg2 xl2>
+                    <!-- <a target="_blank" href='<%= globals.port_base_url %>/v1/api_document/user_list'>
+                        <v-btn color="blue-grey" class="white--text">
+                            User LIST
+                            <v-icon right dark>people</v-icon>
+                        </v-btn>
+                    </a> -->
+                    <!-- 	<a target="_blank" href='<%= globals.port_base_url %>v1/Api_document/tutor_list'>
+						<v-btn color="blue-grey" class="white--text">
+							Tutor LIST
+							<v-icon right dark>people</v-icon>
+						</v-btn>
+					</a> -->
+                    <a href='<%= globals.port_base_url %>v1/api_document/code'>
+                        <v-btn color="blue-grey" class="white--text">
+                            CODE REFERENCE
+                            <v-icon right dark>code</v-icon>
+                        </v-btn>
+                    </a>
+                    <a target="_blank" href='http://3.125.89.55/tostylmou/enc_dec.php'>
+                        <v-btn color="blue-grey" class="white--text">
+                            ENCRYPTION URL
+                            <v-icon right dark>lock</v-icon>
+                        </v-btn>
+                    </a>
+                    <!-- <a target="_blank" href='https://vuetifyjs.com/en/style/colors'>
+						<v-btn color="blue-grey" class="white--text">
+							COLOR INFO
+							<v-icon right dark>color_lens</v-icon>
+						</v-btn>
+					</a>
+					<a target="_blank" href='https://material.io/tools/icons/?style=baseline'>
+						<v-btn color="blue-grey" class="white--text">
+							ICON INFO
+							<v-icon right dark>bubble_chart</v-icon>
+						</v-btn>
+					</a> -->
+                </v-flex>
+                <v-expansion-panel popout>
+                    <v-expansion-panel-content v-for="(message, i) in messages" :key="i" hide-actions>
+                        <v-layout slot="header" align-center row spacer>
+                            <v-flex sm1 xs1 md1 lg1 xl1>
+                                <v-avatar slot="activator" size="36px">
+                                    <v-icon :color="message.color">{{ message.icon }}</v-icon>
+                                </v-avatar>
+                            </v-flex>
+                            <v-flex sm3 xs3 md3 lg3 xl3>
+                                <strong v-html="message.title"></strong>
+                                <v-chip v-if="message.meth" :color="`${message.color} lighten-4`" label small
+                                    class="ml-0">
+                                    {{ message.meth }}
+                                </v-chip>
+                            </v-flex>
+                            <v-flex sm3 xs3 md3 lg3 xl3>
+                                <strong v-html="message.name"></strong>
+                            </v-flex>
+                            <v-flex sm4 xs4 md4 lg4 xl4>
+                                <v-flex v-if="message.link" class="grey--text" ellipsis hidden-sm-and-down>
+                                    {{ message.link }}
+                                </v-flex>
+                                <v-flex v-if="message.imp" class="grey--text" ellipsis hidden-sm-and-down>
+                                    <p style="color:darkred">SHOW IMPORTANT NOTE INSIDE</p>
+                                </v-flex>
+                            </v-flex>
+                        </v-layout>
+                        <v-card dark>
+                            <v-container>
+                                <v-layout>
+                                    <v-flex xs12 align-end flexbox>
+                                        <v-alert :value="true" outline color="white" style="padding:5px;">
+                                            <v-chip color="teal" text-color="white">
+                                                <v-avatar>
+                                                    <v-icon>check_circle</v-icon>
+                                                </v-avatar> MANDATORY
+                                            </v-chip>
+                                            {{message.mandatory}}
+                                        </v-alert>
+                                        <v-alert :value="true" outline color="white" style="padding:5px;">
+                                            <v-chip outline color="#F0F4C3">
+                                                <v-avatar>
+                                                    <v-icon>check_circle</v-icon>
+                                                </v-avatar>OPTIONAL
+                                            </v-chip>
+                                            <span>{{ message.optional }}
+                                        </v-alert>
+                                        <v-alert v-if="message.link" :value="true" outline color="white"
+                                            style="padding:5px;">
+                                            <v-chip color="light-green darken-2" text-color="white">
+                                                <v-avatar>
+                                                    <v-icon>explore</v-icon>
+                                                </v-avatar> LINK
+                                            </v-chip>
+                                            <span>{{ message.link }}
+                                        </v-alert>
+                                        <v-alert v-if="message.imp" :value="true" outline color="white"
+                                            style="padding:5px;">
+                                            <v-chip color="red darken-2" text-color="white">
+                                                <v-avatar>
+                                                    <v-icon>flight_land</v-icon>
+                                                </v-avatar> IMPORTANT
+                                            </v-chip>
+                                            <p v-html="message.imp"></p>
+                                        </v-alert>
+                                        <v-alert v-if="message.exp" :value="true" outline color="white"
+                                            style="padding:5px;">
+                                            <v-chip color="blue darken-2" text-color="white">
+                                                <v-avatar>
+                                                    <v-icon></v-icon>
+                                                </v-avatar> EXAMPLE
+                                            </v-chip>
+                                            <p v-html="message.exp"></p>
+                                        </v-alert>
+                                        <v-alert v-if="message.notes" :value="true" outline color="white"
+                                            style="padding:5px;">
+                                            <v-chip color="blue lighten-1" text-color="white">
+                                                <v-avatar>
+                                                    <v-icon>bookmark</v-icon>
+                                                </v-avatar> NOTES
+                                            </v-chip>
+                                            <span>{{ message.notes }}
+                                        </v-alert>
+                                        <v-layout style="margin-top:-4px">
+                                            <v-flex xs6 align-end flexbox>
+                                                <v-alert :value="true" outline color="yellow" icon="priority_high"
+                                                    style="padding:5px;">
+                                                    <span class="grey--text">HEADER : {{ message.is_header }}, PUSH :
+                                                        {{ message.is_push }}</span>
+                                                    <br>
+                                                    <span>HEADER : {{ message.header }}</span>
+                                                </v-alert>
+                                            </v-flex>
+                                            <v-flex xs6 align-end flexbox>
+                                                <v-alert style="margin-left:4px; padding:5px;" :value="true" outline
+                                                    color="yellow" icon="priority_high">
+                                                    STATUS :
+                                                    <span v-html="message.status"></span>
+                                                </v-alert>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
+                            <v-card-actions>
+                            </v-card-actions>
+                        </v-card>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+            </v-layout>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify@1.0.17/dist/vuetify.min.js"></script>
+    <script src="https://unpkg.com/babel-polyfill/dist/polyfill.min.js"></script>
+
+    <script>
+        //console.log('<%= globals.base_url %>enc_dec.php');
+
+        new Vue({
+            el: '#app',
+            data: () => ({
+                messages: [
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "1 : USER",
+                        "name": "Signup",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/signup",
+                        "mandatory": "username,(mobile_number / email),password,login_type('S','F','G','A'),device_type('I','A'),device_token,time_zone,device_name,os_version,app_version",
+                        "optional": "full_name,country_code,social_id",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "This API is used to register a new user. For social logins ('F', 'G', 'A'), social_id is required instead of password.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., username/email/mobile exists), Code 1 => Successfully registered"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "2 : USER",
+                        "name": "Send OTP",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/send-otp",
+                        "mandatory": "verify_with('Mobile','Email'),(mobile_number / email),country_code(if Mobile)",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Sends an OTP to the user's mobile or email for verification. OTP expires in 20 minutes.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., user not found, OTP send failed), Code 1 => OTP sent successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "3 : USER",
+                        "name": "Verify User",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/verify",
+                        "mandatory": "verify_with('Mobile','Email'),(mobile_number / email),otp,flag",
+                        "optional": "country_code(if Mobile)",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Verifies the user using the OTP sent to their mobile or email. If flag is true, updates user verification status.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., OTP mismatch), Code 1 => User verified successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "4 : USER",
+                        "name": "Login",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/login",
+                        "mandatory": "login_type('S','F','G','A'),(email_phone / social_id),password(if S),device_type('I','A'),device_token,time_zone,device_name,os_version,app_version",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Logs in a user. For standard login ('S'), email/phone/username and password are required. For social login ('F', 'G', 'A'), social_id is required.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., invalid credentials), Code 1 => Login successful"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "5 : USER",
+                        "name": "Reset Password",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/reset-password",
+                        "mandatory": "verify_with('Mobile','Email'),(mobile_number / email),password,country_code(if Mobile)",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Resets the user's password after verifying their mobile or email.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., user not found), Code 1 => Password reset successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "6 : USER",
+                        "name": "Complete Profile",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/complete-profile",
+                        "mandatory": "user_id",
+                        "optional": "profile_img,bio",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Completes the user profile by adding optional fields like profile image and bio.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., no data provided), Code 1 => Profile completed successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "7 : USER",
+                        "name": "Edit Profile",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/edit-profile",
+                        "mandatory": "user_id",
+                        "optional": "username,full_name,profile_img,bio",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Edits the user's profile with optional fields.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., update failed), Code 1 => Profile updated successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "8 : USER",
+                        "name": "Change Password",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/change-password",
+                        "mandatory": "user_id,current_password,new_password,new_password_confirmation",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Changes the user's password after verifying the current password.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., password mismatch), Code 1 => Password changed successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "9 : USER",
+                        "name": "Logout",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/logout",
+                        "mandatory": "user_id",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Logs out the user by clearing device data.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., update failed), Code 1 => Logout successful"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "10 : USER",
+                        "name": "Delete Account",
+                        "meth": "POST",
+                        "link": "<%= globals.port_base_url %>v1/user/delete-account",
+                        "mandatory": "user_id,password",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Deletes the user account after verifying the password.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., password incorrect), Code 1 => Account deleted successfully"
+                    },
+                    {
+                        "color": "teal",
+                        "icon": "person",
+                        "title": "11 : USER",
+                        "name": "View Profile",
+                        "meth": "GET",
+                        "link": "<%= globals.port_base_url %>v1/user/view-profile",
+                        "mandatory": "user_id",
+                        "optional": "",
+                        "is_header": "YES",
+                        "is_push": "NO",
+                        "header": "api_key",
+                        "notes": "Retrieves the user's profile information.",
+                        "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                        "imp": "Code 0 => Failure (e.g., user not found), Code 1 => Profile retrieved successfully"
+                    },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "1 : POST",
+                            "name": "Get Homepage",
+                            "meth": "GET",
+                            "link": "<%= globals.port_base_url %>v1/post/homepage",
+                            "mandatory": "",
+                            "optional": "page,limit",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Fetches posts for the homepage with pagination. Default page is 1, limit is 2.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => No posts found, Code 1 => Posts loaded successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "2 : POST",
+                            "name": "Get Post Likes",
+                            "meth": "GET",
+                            "link": "<%= globals.port_base_url %>v1/post/likes",
+                            "mandatory": "post_id",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Retrieves the username and total likes for a specific post.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Likes retrieved successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "3 : POST",
+                            "name": "Get Post Comments",
+                            "meth": "GET",
+                            "link": "<%= globals.port_base_url %>v1/post/comments",
+                            "mandatory": "post_id",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Fetches comments and their replies for a specific post.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => No comments found, Code 1 => Comments retrieved successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "4 : POST",
+                            "name": "Add Comment to Post",
+                            "meth": "POST",
+                            "link": "<%= globals.port_base_url %>v1/post/comment",
+                            "mandatory": "user_id,post_id,comment",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Adds a comment to a specific post.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Comment added successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "5 : POST",
+                            "name": "Get Post Reposts",
+                            "meth": "GET",
+                            "link": "<%= globals.port_base_url %>v1/post/reposts",
+                            "mandatory": "post_id",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Retrieves users who reposted a specific post.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Reposts retrieved successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "6 : POST",
+                            "name": "Reply to Comment",
+                            "meth": "POST",
+                            "link": "<%= globals.port_base_url %>v1/post/comment/reply",
+                            "mandatory": "user_id,comment_id,reply",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Adds a reply to a specific comment.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Reply added successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "7 : POST",
+                            "name": "Create Post",
+                            "meth": "POST",
+                            "link": "<%= globals.port_base_url %>v1/post/create",
+                            "mandatory": "user_id,post_type",
+                            "optional": "headline,description,content,media_url,media_urls(if post_type='image')",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Creates a new post. For image posts, multiple media URLs can be provided.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., user not found, media upload error), Code 1 => Post created successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "8 : POST",
+                            "name": "Report Post",
+                            "meth": "POST",
+                            "link": "<%= globals.port_base_url %>v1/post/report",
+                            "mandatory": "reported_id,post_id,reason",
+                            "optional": "details",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Reports a post with a reason and optional details.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Report submitted successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "9 : POST",
+                            "name": "Feed Listing",
+                            "meth": "GET",
+                            "link": "<%= globals.port_base_url %>v1/post/feed",
+                            "mandatory": "",
+                            "optional": "",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Fetches a list of posts for the feed, ordered by creation date.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => No posts found, Code 1 => Feed loaded successfully"
+                        },
+                        {
+                            "color": "teal",
+                            "icon": "person",
+                            "title": "10 : POST",
+                            "name": "Post Effect",
+                            "meth": "POST",
+                            "link": "<%= globals.port_base_url %>v1/post/effect",
+                            "mandatory": "user_id,post_id,action('like','repost','comment')",
+                            "optional": "comment(if action='comment')",
+                            "is_header": "YES",
+                            "is_push": "NO",
+                            "header": "api_key",
+                            "notes": "Performs an action (like, repost, or comment) on a post.",
+                            "status": "<br>1. HTTP_OK[200] - code : 0 <br>2. HTTP_OK[200] - code : 1",
+                            "imp": "Code 0 => Failure (e.g., query error), Code 1 => Action completed successfully"
+                        },]
+            })
+        });
+    </script>
+</body>
+
+</html>
